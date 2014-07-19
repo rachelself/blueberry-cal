@@ -49,4 +49,10 @@ RSpec.describe Month do
       Month.new(12, 2012).name.should == "December"
     end
   end
+  context ".length" do
+    it "should return 5 for number of lines in Jan 2012" do
+      Month.new(1, 2012).length.should == 5
+    end
+  end
+
 end
