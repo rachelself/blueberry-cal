@@ -1,12 +1,17 @@
 class ZellersCongruence
-  def self.calculate(month, day, year)
-    m = month
+  def self.calculate(year, month, day = 1)
     q = day
+    year
 
-    if month == 1 || month == 2
+    if month == 1
       y = year - 1
-    else
+      m = 12 + month
+    elsif month == 2
+      y = year - 1
+      m = 12 + month
+    elsif
       y = year
+      m = month
     end
     puts "m is: #{m}"
     puts "day is: #{q}"

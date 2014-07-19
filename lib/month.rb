@@ -28,4 +28,9 @@ class Month
 EOS
     output
   end
+
+  def length
+    @month.calculate
+  end
+
 end
