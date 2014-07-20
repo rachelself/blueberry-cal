@@ -57,6 +57,9 @@ RSpec.describe Month do
     it "should return 4 for number of lines in Feb 2015" do
       Month.new(2, 2015).length.should == 4
     end
+    it "should return 5 for number of lines in Feb 2016" do
+      Month.new(2, 2016).length.should == 5
+    end
   end
 
 end

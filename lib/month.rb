@@ -40,58 +40,47 @@ EOS
 
   def length
     if @month == 2
-      if @year.is_leap_year?
+      if is_leap_year?
         @days = 29
       else
         @days = 28
       end
     else
-      days = 30 + ( ( @month + (@month/8).floor ) % 2 )
-      # puts "days: #{days}"
+      @days = 30 + ( ( @month + (@month/8).floor ) % 2 )
+
     end
 
     # start_position = ZellersCongruence.calculate(@year, @month)
     start_position = 0
-    first_line_length = 7 - (start_position - 1)
-    remaining_days = days - first_line_length
 
+    first_line_length = 7 - (start_position)
+    remaining_days = @days - first_line_length
     remainder = remaining_days % 7
-    middle_lines = (remaining_days - remainder) / 7
 
-    if remaining_days % 7
+    if remainder > 0
+      middle_lines = ((remaining_days - remainder) / 7)
       length = middle_lines + 2
     else
+      middle_lines = ((remaining_days - remainder) / 7)
       length = middle_lines + 1
     end
-    # puts "length: #{length}"
+    # puts "days: #{@days}"
+    # puts "first_line_length: #{first_line_length}"
+    # puts "remaining_days: #{remaining_days}"
+    # puts "remainder: #{remainder}"
+    # puts "middle_lines: #{middle_lines}"
+
     return length
   end
 
-  # if @month == 2
-  #   if @year.is_leap_year?
-  #     puts "its a leap year!"
-  #   end
-  # else
-  #   month_starts_on = ZellersCongruence.calculate(2012, 1)
-  #   first_line_length = 7 - (month_starts_on - 1)
-  #   remaining_days = @total_days - first_line_length
-  #   last_line_length = remaining_days % 7
-  #   lines_after_first_line = (remaining_days - last_line_length) / 7
-  #   length = (lines_after_first_line) + 1
-  #
-  #
-  #   puts "month starts on day: #{month_starts_on}"
-  #   puts "the month is: #{@month}"
-  #   puts "total days for this month: #{@total_days}"
-  #   puts "first_line_length: #{first_line_length}"
-  #   puts "remaining_days: #{remaining_days}"
-  #   puts "last_line_length: #{last_line_length}"
-  #   puts "lines_after_first_line: #{lines_after_first_line}"
-  #   puts "length: #{length}"
-  #   return length
-  #
-  #
-  # end
+  def is_leap_year? # need to move this over to year class
+    if @year % 4 == 0
+      return true if @year % 100 == 0 && @year % 400 == 0
+      return false if @year % 100
+    else
+      false
+    end
+  end
 
 
 end
