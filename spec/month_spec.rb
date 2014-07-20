@@ -61,5 +61,10 @@ RSpec.describe Month do
       Month.new(2, 2016).length.should == 5
     end
   end
+  context ".construct_month" do
+    it "should construct arrays from which to print a month" do
+      Month.new(1, 2017).construct_month.should == []
+    end
+  end
 
 end

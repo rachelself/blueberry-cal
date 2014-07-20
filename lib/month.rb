@@ -3,14 +3,9 @@ require_relative '../lib/year'
 
 class Month
 
-  attr_accessor :year
-
   MONTHS = [nil, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-  # DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
   def initialize(month, year)
-    # puts "this is the month coming in: #{month}"
-    # @total_days = DAYS[month - 1]
     @month = month
     @year = year
 
@@ -70,7 +65,7 @@ EOS
     # puts "remainder: #{remainder}"
     # puts "middle_lines: #{middle_lines}"
 
-    return length
+    length
   end
 
   def is_leap_year? # need to move this over to year class
@@ -80,6 +75,18 @@ EOS
     else
       false
     end
+  end
+
+  def construct_month
+    if @month.respond_to?("length")
+      l = @month.length
+      puts "length: #{l}"
+    else
+      puts "sorry, the object month doesn't understand the message"
+    end
+
+    spaces = 6 - @month.length
+    puts "spaces: #{spaces}"
   end
 
 
