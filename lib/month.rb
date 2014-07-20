@@ -7,9 +7,20 @@ class Month
 
   def initialize(month, year)
     @month = month
+    # @year = Year.new(year)
     @year = year
 
+    # @days = nil
+    # @start_position = nil
+    # @first_line_length = nil
+    # @remaining_days = nil
+    # @remainder = nil
+    # @middle_lines = nil
+    # @length = nil
   end
+
+
+
 
   def header
     "#{name} #{@year}".center(20).rstrip
@@ -33,9 +44,17 @@ EOS
     output
   end
 
+  # def sum(x,y)
+  #   x + y
+  # end
+  #
+  # def double_sum
+  #   sum(5,6) * 2
+  # end
+
   def length
     if @month == 2
-      if is_leap_year?
+      if self.is_leap_year?
         @days = 29
       else
         @days = 28
@@ -46,26 +65,25 @@ EOS
     end
 
     # start_position = ZellersCongruence.calculate(@year, @month)
-    start_position = 0
+    @start_position = 0
 
-    first_line_length = 7 - (start_position)
-    remaining_days = @days - first_line_length
-    remainder = remaining_days % 7
+    @first_line_length = 7 - (@start_position)
+    @remaining_days = @days - @first_line_length
+    @remainder = @remaining_days % 7
 
-    if remainder > 0
-      middle_lines = ((remaining_days - remainder) / 7)
-      length = middle_lines + 2
+    if @remainder > 0
+      @middle_lines = ((@remaining_days - @remainder) / 7)
+      @length = @middle_lines + 2
     else
-      middle_lines = ((remaining_days - remainder) / 7)
-      length = middle_lines + 1
+      @middle_lines = ((@remaining_days - @remainder) / 7)
+      @length = @middle_lines + 1
     end
     # puts "days: #{@days}"
     # puts "first_line_length: #{first_line_length}"
     # puts "remaining_days: #{remaining_days}"
     # puts "remainder: #{remainder}"
     # puts "middle_lines: #{middle_lines}"
-
-    length
+    @length
   end
 
   def is_leap_year? # need to move this over to year class
@@ -77,16 +95,20 @@ EOS
     end
   end
 
-  def construct_month
-    if @month.respond_to?("length")
-      l = @month.length
-      puts "length: #{l}"
-    else
-      puts "sorry, the object month doesn't understand the message"
-    end
+  def days
+    @days
+  end
 
-    spaces = 6 - @month.length
-    puts "spaces: #{spaces}"
+  def construct_month
+    # spaces = 6 - self.length
+    # puts "spaces: #{spaces}"
+    puts "days: #{self.days}"
+    all_days = []
+    days.times do |i|
+      all_days << i += 1
+    end
+    @month_array = all_days.each_slice(7){ |a| p a }
+    puts "this is @month_array: #{@month_array}"
   end
 
 
