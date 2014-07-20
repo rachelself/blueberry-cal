@@ -1,5 +1,6 @@
 require_relative '../lib/month'
 
+
 RSpec.describe Month do
   context ".header" do
     it "matches cal for December 2012" do
@@ -52,6 +53,9 @@ RSpec.describe Month do
   context ".length" do
     it "should return 5 for number of lines in Jan 2012" do
       Month.new(1, 2012).length.should == 5
+    end
+    it "should return 4 for number of lines in Feb 2015" do
+      Month.new(2, 2015).length.should == 4
     end
   end
 

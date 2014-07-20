@@ -1,6 +1,9 @@
 require_relative '../lib/zellers_congruence'
+require_relative '../lib/year'
 
 class Month
+
+  attr_accessor :year
 
   MONTHS = [nil, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
   # DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
@@ -36,8 +39,17 @@ EOS
   end
 
   def length
-    days = 30 + ( ( @month + (@month/8).floor ) % 2 )
-    # puts "days: #{days}"
+    if @month == 2
+      if @year.is_leap_year?
+        @days = 29
+      else
+        @days = 28
+      end
+    else
+      days = 30 + ( ( @month + (@month/8).floor ) % 2 )
+      # puts "days: #{days}"
+    end
+
     # start_position = ZellersCongruence.calculate(@year, @month)
     start_position = 0
     first_line_length = 7 - (start_position - 1)
@@ -53,7 +65,6 @@ EOS
     end
     # puts "length: #{length}"
     return length
-
   end
 
   # if @month == 2
