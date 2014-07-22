@@ -3,24 +3,15 @@ require_relative '../lib/year'
 
 class Month
 
+  # attr_accessor :days, :start_position, :first_line_length, :remaining_days, :remainder, :middle_lines, :length
+
   MONTHS = [nil, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
   def initialize(month, year)
     @month = month
     # @year = Year.new(year)
     @year = year
-
-    # @days = nil
-    # @start_position = nil
-    # @first_line_length = nil
-    # @remaining_days = nil
-    # @remainder = nil
-    # @middle_lines = nil
-    # @length = nil
   end
-
-
-
 
   def header
     "#{name} #{@year}".center(20).rstrip
@@ -52,38 +43,43 @@ EOS
   #   sum(5,6) * 2
   # end
 
-  def length
+  def total_days
     if @month == 2
       if self.is_leap_year?
-        @days = 29
+        days = 29
       else
-        @days = 28
+        days = 28
       end
     else
-      @days = 30 + ( ( @month + (@month/8).floor ) % 2 )
-
+      days = 30 + ( ( @month + (@month/8).floor ) % 2 )
     end
+    days
+  end
 
+  def total_weeks
     # start_position = ZellersCongruence.calculate(@year, @month)
-    @start_position = 0
+    start_position = 0
 
-    @first_line_length = 7 - (@start_position)
-    @remaining_days = @days - @first_line_length
-    @remainder = @remaining_days % 7
+    days = self.total_days
+    # puts "Im in total_weeks - days: #{days}"
 
-    if @remainder > 0
-      @middle_lines = ((@remaining_days - @remainder) / 7)
-      @length = @middle_lines + 2
+    first_line_length = 7 - (start_position)
+    remaining_days = days - first_line_length
+    remainder = remaining_days % 7
+
+    if remainder > 0
+      middle_lines = ((remaining_days - remainder) / 7)
+      length = middle_lines + 2
     else
-      @middle_lines = ((@remaining_days - @remainder) / 7)
-      @length = @middle_lines + 1
+      middle_lines = ((remaining_days - remainder) / 7)
+      length = middle_lines + 1
     end
     # puts "days: #{@days}"
     # puts "first_line_length: #{first_line_length}"
     # puts "remaining_days: #{remaining_days}"
     # puts "remainder: #{remainder}"
     # puts "middle_lines: #{middle_lines}"
-    @length
+    length
   end
 
   def is_leap_year? # need to move this over to year class
@@ -95,20 +91,38 @@ EOS
     end
   end
 
-  def days
-    @days
+  def all_days
+    all_days = []
+    weeks = self.total_weeks
+    days = self.total_days
+
+    # puts "total_weeks: #{weeks}"
+    # puts "total_days: #{days}"
+
+    days.times do |i|
+      all_days << i + 1
+    end
+    # puts "all_days: #{all_days}"
+    all_days
   end
 
   def construct_month
     # spaces = 6 - self.length
     # puts "spaces: #{spaces}"
-    puts "days: #{self.days}"
-    all_days = []
-    days.times do |i|
-      all_days << i += 1
+    all = self.all_days
+    # puts "this is all the days: #{all_days}"
+    c = []
+    all.each_slice(7){ |a| c<<a }
+    # puts "new array: #{c}"
+
+    c.each do |sub_array|
+      if sub_array.size != 7
+        # puts "less than 7!"
+        until sub_array.size == 7
+          sub_array << "  "
+        end
+      end
     end
-    @month_array = all_days.each_slice(7){ |a| p a }
-    puts "this is @month_array: #{@month_array}"
   end
 
 
