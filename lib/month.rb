@@ -65,9 +65,13 @@ class Month
     days
   end
 
+  def start_position
+    ZellersCongruence.calculate(@year, @month)
+    # start_position = 0
+  end
+
   def total_weeks
-    # start_position = ZellersCongruence.calculate(@year, @month)
-    start_position = 0
+    start_position = self.start_position
 
     days = self.total_days
     # puts "Im in total_weeks - days: #{days}"
@@ -104,9 +108,20 @@ class Month
     all_days = []
     # weeks = self.total_weeks
     days = self.total_days
+    blanks =  7 - self.start_position
+    puts "number blanks at start: #{blanks}"
 
     # puts "total_weeks: #{weeks}"
     # puts "total_days: #{days}"
+    if blanks > 0
+      blanks.times do
+        all_days << "  "
+      end
+    else
+      6.times do
+        all_days << "  "
+      end
+    end
 
     days.times do |i|
       all_days << i + 1
