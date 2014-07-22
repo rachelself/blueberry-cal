@@ -111,17 +111,21 @@ class Month
     blanks =  7 - self.start_position
     puts "number blanks at start: #{blanks}"
 
-    # puts "total_weeks: #{weeks}"
-    # puts "total_days: #{days}"
-    if blanks > 0
-      blanks.times do
-        all_days << "  "
-      end
-    else
-      6.times do
-        all_days << "  "
-      end
-    end
+    
+    # if blanks = 0
+    #   blanks = 6
+    # end
+    # # puts "total_weeks: #{weeks}"
+    # # puts "total_days: #{days}"
+    # if blanks > 0
+    #   blanks.times do
+    #     all_days << "  "
+    #   end
+    # # else
+    # #   6.times do
+    # #     all_days << "  "
+    # #   end
+    # end
 
     days.times do |i|
       all_days << i + 1
