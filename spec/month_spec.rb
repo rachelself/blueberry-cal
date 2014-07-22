@@ -50,26 +50,41 @@ RSpec.describe Month do
       Month.new(12, 2012).name.should == "December"
     end
   end
-  context ".length" do
+  context ".total_weeks" do
     it "should return 5 for number of lines in Jan 2012" do
-      Month.new(1, 2012).length.should == 5
+      Month.new(1, 2012).total_weeks.should == 5
     end
     it "should return 4 for number of lines in Feb 2015" do
-      Month.new(2, 2015).length.should == 4
+      Month.new(2, 2015).total_weeks.should == 4
     end
     # commented out for now just because zeller is not in play yet
     # it "should return 5 for number of lines in Feb 2016" do
-    #   Month.new(2, 2016).length.should == 5
+    #   Month.new(2, 2016).total_weeks.should == 5
     # end
   end
   context ".construct_month" do
-    it "should construct a @month_array for Jan 2012" do
+    it "should construct a month array for Jan 2012" do
       Month.new(1, 2012).construct_month.should ==
       [[1, 2, 3, 4, 5, 6, 7],
       [8, 9, 10, 11, 12, 13, 14],
       [15, 16, 17, 18, 19, 20, 21],
       [22, 23, 24, 25, 26, 27, 28],
-      [29, 30, 31, "  ", "  ", "  ", "  "]]
+      [29, 30, 31], []]
+    end
+    it "should construct a month array for Feb 2015" do
+      Month.new(2, 2015).construct_month.should ==
+      [[1, 2, 3, 4, 5, 6, 7],
+      [8, 9, 10, 11, 12, 13, 14],
+      [15, 16, 17, 18, 19, 20, 21],
+      [22, 23, 24, 25, 26, 27, 28], [], []]
+    end
+    it "should construct a month array for Sept 2013" do
+      Month.new(9, 2013).construct_month.should ==
+      [[1, 2, 3, 4, 5, 6, 7],
+      [8, 9, 10, 11, 12, 13, 14],
+      [15, 16, 17, 18, 19, 20, 21],
+      [22, 23, 24, 25, 26, 27, 28],
+      [29, 30], []]
     end
   end
 

@@ -24,14 +24,23 @@ class Month
   def to_s
     output = header
     output << "\nSu Mo Tu We Th Fr Sa\n"
-    output << <<EOS
-                   1
- 2  3  4  5  6  7  8
- 9 10 11 12 13 14 15
-16 17 18 19 20 21 22
-23 24 25 26 27 28 29
-30 31
-EOS
+
+    month_array = self.construct_month
+    month_array.each do |sub_array|
+      sub_array.each_with_index do |week, i|
+        # puts "i is : #{i}"
+        if i == 0
+          output << week.to_s.rjust(2)
+        else
+          output << week.to_s.rjust(3)
+        end
+
+        # output << " "
+
+      end
+      # output << "new line"
+      output << "\n"
+    end
     output
   end
 
@@ -93,7 +102,7 @@ EOS
 
   def all_days
     all_days = []
-    weeks = self.total_weeks
+    # weeks = self.total_weeks
     days = self.total_days
 
     # puts "total_weeks: #{weeks}"
@@ -118,11 +127,16 @@ EOS
     c.each do |sub_array|
       if sub_array.size != 7
         # puts "less than 7!"
-        until sub_array.size == 7
-          sub_array << "  "
-        end
+        # until sub_array.size == 7
+        #   sub_array << "  "
+        # end
+      end
+      until c.size == 6
+        c << []
       end
     end
+    # puts "new array: #{c}"
+    c
   end
 
 
