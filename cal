@@ -1,9 +1,17 @@
-#!/usr/bin/env ruby #this is a ruby file
+#!/usr/bin/env ruby
 
 require_relative 'lib/month'
+require_relative 'lib/year'
 
-month = ARGV[0].to_i
-year = ARGV[1].to_i
+if ARGV[1]
+  month = ARGV[0].to_i
+  year = ARGV[1].to_i
 
-month = Month.new(month, year)
-puts month.to_s
+  month = Month.new(month, year)
+  puts month.to_s
+else
+  year = ARGV[0].to_i
+
+  year = Year.new(year)
+  puts year.to_s
+end

@@ -57,10 +57,9 @@ RSpec.describe Month do
     it "should return 4 for number of lines in Feb 2015" do
       Month.new(2, 2015).total_weeks.should == 4
     end
-    # commented out for now just because zeller is not in play yet
-    # it "should return 5 for number of lines in Feb 2016" do
-    #   Month.new(2, 2016).total_weeks.should == 5
-    # end
+    it "should return 5 for number of lines in Feb 2016" do
+      Month.new(2, 2016).total_weeks.should == 5
+    end
   end
   context ".construct_month" do
     it "should construct a month array for Jan 2012" do
