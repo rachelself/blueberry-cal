@@ -14,4 +14,11 @@ RSpec.describe Year do
       Year.new(2000).is_leap_year?.should == true
     end
   end
+  # context ".construct_year" do
+  #   it "should construct an array to print year 2014" do
+  #     Year.new(2014).construct_year.should ==
+  #
+  #   end
+  # end
+
 end

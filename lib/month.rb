@@ -3,6 +3,8 @@ require_relative '../lib/year'
 
 class Month
 
+  attr_accessor :days
+
   MONTHS = [nil, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
   def initialize(month, year)
@@ -14,12 +16,35 @@ class Month
     "#{name} #{@year}".center(20).rstrip
   end
 
+  def year_header
+    "#{name}".center(20).rstrip
+  end
+
   def name
     MONTHS[@month]
   end
 
   def to_s
     output = header
+    output << "\nSu Mo Tu We Th Fr Sa\n"
+
+    month_array = self.construct_month
+    month_array.each do |sub_array|
+      sub_array.each_with_index do |week, i|
+        if i == 0
+          output << week.to_s.rjust(2)
+        else
+          output << week.to_s.rjust(3)
+        end
+
+      end
+      output << "\n"
+    end
+    output
+  end
+
+  def to_s_year
+    output = year_header
     output << "\nSu Mo Tu We Th Fr Sa\n"
 
     month_array = self.construct_month
@@ -97,14 +122,14 @@ class Month
     length
   end
 
-  def is_leap_year? # need to move this over to year class
-    if @year % 4 == 0
-      return true if @year % 100 == 0 && @year % 400 == 0
-      return false if @year % 100
-    else
-      false
-    end
-  end
+  # def is_leap_year? # need to move this over to year class
+  #   if @year % 4 == 0
+  #     return true if @year % 100 == 0 && @year % 400 == 0
+  #     return false if @year % 100
+  #   else
+  #     false
+  #   end
+  # end
 
   def all_days
     all_days = []
