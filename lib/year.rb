@@ -8,7 +8,7 @@ class Year
     @year_array = self.construct_year
   end
 
-  def is_leap_year?
+  def leap?
     if @year % 4 == 0
       return true if @year % 100 == 0 && @year % 400 == 0
       return false if @year % 100

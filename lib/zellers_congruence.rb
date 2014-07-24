@@ -17,7 +17,6 @@ class ZellersCongruence
     if h == 0
       h = 7
     end
-
     return h
   end
 end

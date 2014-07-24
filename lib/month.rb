@@ -44,7 +44,7 @@ class Month
 
   def total_days
     if @month == 2
-      if Year.new(@year).is_leap_year?
+      if Year.new(@year).leap?
         days = 29
       else
         days = 28
