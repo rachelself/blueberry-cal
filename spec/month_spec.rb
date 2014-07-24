@@ -2,7 +2,7 @@ require_relative '../lib/month'
 
 
 RSpec.describe Month do
-  context ".header" do
+  context "#header" do
     it "matches cal for December 2012" do
       month = Month.new(12, 2012)
       month.header.should == "   December 2012"
@@ -12,7 +12,7 @@ RSpec.describe Month do
       month.header.should == "     July 1901"
     end
   end
-  context ".name" do
+  context "#name" do
     it "translates January" do
       Month.new(1, 2012).name.should == "January"
     end
@@ -50,15 +50,15 @@ RSpec.describe Month do
       Month.new(12, 2012).name.should == "December"
     end
   end
-  context ".total_weeks" do
-    it "should return 5 for number of lines in Jan 2012" do
-      Month.new(1, 2012).total_weeks.should == 5
+  context "#total_days" do
+    it "correctly tabulates January" do
+      Month.new(1, 2012).total_days.should == 31
     end
-    it "should return 4 for number of lines in Feb 2015" do
-      Month.new(2, 2015).total_weeks.should == 4
+    it "correctly tabulates February in a standard year" do
+      Month.new(2, 2015).total_days.should == 28
     end
-    it "should return 5 for number of lines in Feb 2016" do
-      Month.new(2, 2016).total_weeks.should == 5
+    it "correctly tabulates February in a leap year" do
+      Month.new(2, 2016).total_days.should == 29
     end
   end
   context ".construct_month" do

@@ -6,6 +6,10 @@ class Month
   attr_accessor :days
 
   MONTHS = [nil, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  WEEK_LENGTH = 7
+  # MONTH_HEIGHT = 6
+  # MONTH_WIDTH = 20
+  # PADDING = 2
 
   def initialize(month, year)
     @month = month
@@ -21,7 +25,6 @@ class Month
   end
 
   def to_s
-    # puts "start_position: #{start_position}"
     output = header
     output << "\nSu Mo Tu We Th Fr Sa\n"
 
@@ -33,7 +36,6 @@ class Month
         else
           output << week.to_s.rjust(3)
         end
-
       end
       output << "\n"
     end
@@ -57,66 +59,34 @@ class Month
     ZellersCongruence.calculate(@year, @month)
   end
 
-  # def total_weeks
-  #   start_position = self.start_position
-  #
-  #   days = self.total_days
-  #
-  #   if start_position == 1
-  #     first_line_length = 7
-  #   elsif start_position == 7
-  #     first_line_length = 7
-  #   else
-  #     first_line_length = 7 - (start_position)
-  #   end
-  #
-  #   remaining_days = days - first_line_length
-  #   remainder = remaining_days % 7
-  #
-  #   if remainder > 0
-  #     middle_lines = ((remaining_days - remainder) / 7)
-  #     length = middle_lines + 2
-  #   else
-  #     middle_lines = ((remaining_days - remainder) / 7)
-  #     length = middle_lines + 1
-  #   end
-  #   # puts "days: #{days}"
-  #   # puts "first_line_length: #{first_line_length}"
-  #   # puts "remaining_days: #{remaining_days}"
-  #   # puts "remainder: #{remainder}"
-  #   # puts "middle_lines: #{middle_lines}"
-  #   length
-  # end
-
   def all_days
     all_days = []
-    days = self.total_days
-    blanks = self.start_position - 1
+    # days = self.total_days
+    blanks = WEEK_LENGTH - self.start_position
+    # blanks = self.start_position - 1
 
-    days.times do |i|
-      if i == 0
-        if blanks > 0
-          blanks.times do
-            all_days << "  "
-          end
+    self.total_days.times do |i|
+      if i == 0 # only put blanks at start
+        # if blanks > 0
+        blanks.times do
+          all_days << "  "
         end
+        # end
       end
-      all_days << i + 1
+      all_days << i + 1 #push in the rest of the days
     end
     all_days
   end
 
   def construct_month
-    all = self.all_days
+    # all = self.all_days
+    # use zip?
     c = []
-    all.each_slice(7){ |a| c<<a }
+    self.all_days.each_slice(7){ |a| c<<a }
 
     until c.size == 6
       c << []
     end
-    # puts "construct_month output: #{c}"
     c
   end
-
-
 end
