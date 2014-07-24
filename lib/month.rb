@@ -16,15 +16,16 @@ class Month
     "#{name} #{@year}".center(20).rstrip
   end
 
-  def year_header
-    "#{name}".center(20).rstrip
-  end
+  # def year_header
+  #   "#{name}".center(20).rstrip
+  # end
 
   def name
     MONTHS[@month]
   end
 
   def to_s
+    puts "start_position: #{start_position}"
     output = header
     output << "\nSu Mo Tu We Th Fr Sa\n"
 
@@ -94,6 +95,7 @@ class Month
 
   def total_weeks
     start_position = self.start_position
+
     days = self.total_days
 
     if start_position == 1
@@ -157,7 +159,7 @@ class Month
     until c.size == 6
       c << []
     end
-
+    # puts "construct_month output: #{c}"
     c
   end
 

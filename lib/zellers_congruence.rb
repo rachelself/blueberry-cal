@@ -15,7 +15,7 @@ class ZellersCongruence
     h = (q + (((m + 1)*26)/10).floor + y + (y/4).floor + 6 * (y/100).floor + (y/400).floor) % 7
 
     if h == 0
-      h == 7
+      h = 7
     end
 
     return h

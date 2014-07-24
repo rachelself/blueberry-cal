@@ -13,5 +13,5 @@ else
   year = ARGV[0].to_i
 
   year = Year.new(year)
-  puts year.construct_year
+  puts year.to_s
 end
