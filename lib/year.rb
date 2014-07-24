@@ -52,108 +52,120 @@ class Year
   end
 
   def to_s
-    # puts "this is year_array: #{@year_array}"
     output = header
     output << "\n\n"
 
-    0.upto(2) do |j|
-      output << month_headers[j].center(20)
-      output << "  "
-    end
-    output << "\n"
-    output << week_days
-
-    month = @year_array[1].construct_month
-    first_line = month[0]
-    # puts "month: #{month}"
-    # puts "first_line: #{first_line}"
-
-    0.upto(5) do |l| #prints lines
-
-      0.upto(2) do |i| # prints each month
-
-        month = @year_array[i].construct_month
-        next_line = month[l]
-
-
-        puts "next_line: #{next_line}"
-        # puts "month: #{month}"
-        # puts "first_line: #{first_line}"
-
-        0.upto(6) do |d| # prints each day of the week
-          # puts "d is: #{first_line[d]}"
-          output << next_line[d].to_s.center(3)
-
-        end
-        output << " "
-
-
+      #row 1
+      0.upto(2) do |j|
+        output << @year_array[j].name.center(20)
+        output << "  "
       end
       output << "\n"
-    end
+      output << week_days
+
+      month = @year_array[1].construct_month
+      first_line = month[0]
+
+      0.upto(5) do |l| #prints lines
+
+        0.upto(2) do |i| # prints each month
+          month = @year_array[i].construct_month
+          next_line = month[l]
+
+          0.upto(6) do |d| # prints each day of the week
+            output << next_line[d].to_s.center(3)
+
+          end
+          output << " "
+
+        end
+        output << "\n"
+      end
+
+      #row 2
+      3.upto(5) do |j|
+        output << @year_array[j].name.center(20)
+        output << "  "
+      end
+      output << "\n"
+      output << week_days
+
+      month = @year_array[1].construct_month
+      first_line = month[0]
+
+      0.upto(5) do |l| #prints lines
+
+        3.upto(5) do |i| # prints each month
+          month = @year_array[i].construct_month
+          next_line = month[l]
+
+          0.upto(6) do |d| # prints each day of the week
+            output << next_line[d].to_s.center(3)
+
+          end
+          output << " "
+
+        end
+        output << "\n"
+      end
+
+      #row 3
+      6.upto(8) do |j|
+        output << @year_array[j].name.center(20)
+        output << "  "
+      end
+      output << "\n"
+      output << week_days
+
+      month = @year_array[1].construct_month
+      first_line = month[0]
+
+      0.upto(5) do |l| #prints lines
+
+        6.upto(8) do |i| # prints each month
+          month = @year_array[i].construct_month
+          next_line = month[l]
+
+          0.upto(6) do |d| # prints each day of the week
+            output << next_line[d].to_s.center(3)
+
+          end
+          output << " "
+
+        end
+        output << "\n"
+      end
+
+      #row 4
+      9.upto(11) do |j|
+        output << @year_array[j].name.center(20)
+        output << "  "
+      end
+      output << "\n"
+      output << week_days
+
+      month = @year_array[1].construct_month
+      first_line = month[0]
+
+      0.upto(5) do |l| #prints lines
+
+        9.upto(11) do |i| # prints each month
+          month = @year_array[i].construct_month
+          next_line = month[l]
+
+          0.upto(6) do |d| # prints each day of the week
+            output << next_line[d].to_s.center(3)
+
+          end
+          output << " "
+
+        end
+        output << "\n"
+      end
+
+
+
     output
   end
-
-  # def to_s
-  #   puts "year_array: #{@year_array}"
-  #   output = header
-  #   output << "\n"
-  #   # year_array = @year.construct_year
-  #   # year_array = year_array[0]
-  #   # puts "@year_array: #{@year_array}"
-  #   1.upto(3) do |r|
-  #     # 1.upto(1) do |m|
-  #       name = Month.new(r, @year).name
-  #       output << name
-  #
-  #     # end
-  #
-  #   end
-  #   output << "\n"
-  #
-  #   1.upto(3) do |w|
-  #     output << "\nSu Mo Tu We Th Fr Sa\n"
-  #   end
-  #   output
-  # end
-
-
-  # def to_s
-  #   output = header
-  #   output << "\n"
-  #   @year_array = @year.construct_year
-  #
-  #   1.upto(4) do |i|
-  #     puts "inside i loop"
-  #
-  #     0.upto(2) do |m|
-  #       # m_counter = 0
-  #       puts "inside m loop"
-  #       puts "this iteration: #{@year_array[m]}"
-  #       # output << @year_array[m][m]
-  #       # m_counter += 1
-  #
-  #       # 1.upto(8) do |l|
-  #       #   month
-  #       # end
-  #     end
-  #   end
-  #
-  #   # 1.upto(12) do |i|
-  #   #   row = []
-  #   #   if i % 3 || i == 1
-  #   #     row = []
-  #   #     # row_counter += 1
-  #   #     month = Month.new(i, @year).to_s_year
-  #   #     row << month
-  #   #     output << row
-  #   #   else
-  #   #     month = Month.new(i, @year).to_s_year
-  #   #     row << month
-  #   #     output << month
-  #   #   end
-  #   # end
-  #   output
-  # end
 
 end
