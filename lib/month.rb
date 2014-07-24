@@ -48,10 +48,12 @@ class Month
         days = 29
       else
         days = 28
+        # puts "not a leap year = 28"
       end
     else
       days = 30 + ( ( @month + (@month/8).floor ) % 2 )
     end
+    # puts "total days: #{days}"
     days
   end
 
@@ -62,8 +64,9 @@ class Month
   def all_days
     all_days = []
     # days = self.total_days
-    blanks = WEEK_LENGTH - self.start_position
-    # blanks = self.start_position - 1
+    # puts "start_position: #{self.start_position}"
+    blanks = self.start_position - 1
+    # puts "blanks: #{blanks}"
 
     self.total_days.times do |i|
       if i == 0 # only put blanks at start

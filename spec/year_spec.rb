@@ -2,16 +2,20 @@ require_relative '../lib/year'
 
 RSpec.describe Year do
   context ".is_leap_year?" do
-    it "should return false for year not divisible by 4" do
-      Year.new(2013).leap?.should == false
+    it "returns false for a normal year " do
+      Year.new(2013).leap?.should be_falsey
     end
 
-    it "should return false for year divisble by 4 but not 100" do
-      Year.new(2004).leap?.should == false
+    it "returns true for regular leap years" do
+      Year.new(2008).leap?.should be_truthy
     end
 
-    it "should return true for year divisble by 4 AND 100" do
-      Year.new(2000).leap?.should == true
+    it "returns false for century (non)leap years" do
+      Year.new(1900).leap?.should be_falsey
+    end
+
+    it "returns true for quad-century leap years" do
+      Year.new(2000).leap?.should be_truthy
     end
   end
 end
